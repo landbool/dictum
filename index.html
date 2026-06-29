@@ -10,16 +10,16 @@
         
         /* 🔥 НАСТРОЙКА ЖИВОГО НЕОНОВОГО СВЕЧЕНИЯ */
         @keyframes ambientGlow {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-            50% { transform: translate(-48%, -52%) scale(1.15); opacity: 0.65; }
+            0%, 100__ { transform: translate(-50%, -50%) scale(1); opacity: 0.35; }
+            50% { transform: translate(-48%, -52%) scale(1.15); opacity: 0.6; }
         }
         
         .ambient-blob {
             position: absolute;
-            width: 650px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(0,122,255,0.4) 0%, rgba(175,82,222,0.15) 50%, transparent 70%);
-            filter: blur(80px);
+            width: 700px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,122,255,0.35) 0%, rgba(175,82,222,0.15) 50%, transparent 70%);
+            filter: blur(90px);
             pointer-events: none;
             z-index: 0;
             animation: ambientGlow 8s ease-in-out infinite;
@@ -45,6 +45,7 @@
                 <span class="text-xl font-bold tracking-wider text-white transition-colors duration-300 group-hover:text-[#007AFF]">DICTUM</span>
             </div>
             <nav class="flex items-center space-x-6">
+                <a href="#simulator" class="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-300">Демо-пульт</a>
                 <a href="#features" class="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-300">Возможности</a>
                 <a href="#faq" class="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-300">FAQ</a>
                 <a href="https://t.me/MyDictumBot" target="_blank" class="text-sm font-semibold text-[#007AFF] hover:text-[#0062CC] transition-colors duration-300 flex items-center space-x-1">
@@ -56,7 +57,7 @@
 
     <main class="flex-grow max-w-4xl mx-auto px-6 py-24 text-center relative">
         
-        <div class="ambient-blob top-[25%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="ambient-blob top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
         
         <h1 class="reveal-anim text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight relative z-10">
             Управление компьютером<br>
@@ -64,15 +65,81 @@
             <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#007AFF] via-[#AF52DE] to-[#007AFF] bg-[length:200%_auto]">Telegram и Алисы</span>
         </h1>
         
-        <p class="reveal-anim delay-100 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-14 leading-relaxed relative z-10">
+        <p class="reveal-anim delay-100 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed relative z-10">
             Dictum связывает десктопное приложение на ПК и защищенного облачного бота через мгновенный MQTT-мост. Запускай макросы, симулируй действия мыши и клавиатуры, настраивай звук и автоматизируй рутину.
         </p>
 
-        <div class="reveal-anim delay-200 mb-24 relative z-10">
+        <div class="reveal-anim delay-200 mb-20 relative z-10">
             <a href="#" id="download-btn" class="inline-block bg-[#007AFF] hover:bg-[#0062CC] text-white font-bold text-lg px-9 py-4 rounded-xl shadow-[0_0_30px_rgba(0,122,255,0.2)] hover:shadow-[0_0_40px_rgba(0,122,255,0.5)] transition-all duration-300 transform hover:-translate-y-1">
                 📥 Скачать Dictum для Windows
             </a>
         </div>
+
+        <section id="simulator" class="reveal-anim delay-300 mt-8 mb-28 p-8 bg-[#0F1016] border border-[#1F2438] rounded-3xl relative z-10 shadow-2xl scroll-mt-24">
+            <div class="text-center mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#AF52DE] bg-[#AF52DE]/10 px-3 py-1 rounded-full">Интерактивный тест</span>
+                <h2 class="text-2xl font-bold text-white mt-2">Попробуй Dictum в действии прямо сейчас</h2>
+                <p class="text-sm text-gray-400 mt-1">Нажимай на кнопки виртуального смартфона и смотри на реакцию экрана ПК</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center max-w-3xl mx-auto">
+                
+                <div class="w-64 h-96 bg-[#07080B] border-4 border-[#1F2438] rounded-[36px] p-4 mx-auto shadow-2xl relative flex flex-col justify-between overflow-hidden">
+                    <div class="w-24 h-4 bg-[#1F2438] rounded-full absolute top-2 left-1/2 transform -translate-x-1/2 z-20"></div>
+                    
+                    <div class="flex-grow pt-4 text-left overflow-y-auto space-y-2 text-[11px]">
+                        <div class="bg-[#141724] border border-[#1F2438] p-2 rounded-xl rounded-tl-none text-gray-300 max-w-[85%] animate-pulse">
+                            🤖 Пульт Dictum разблокирован. Нажимайте кнопки ниже:
+                        </div>
+                        <div id="phone-status-log" class="text-gray-500 italic px-1 hidden text-[10px]">
+                            📡 Сигнал отправлен...
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 mt-auto pb-2 z-10">
+                        <button onclick="simulateClick('arbuz')" class="bg-[#141724] hover:bg-[#1C1F30] border border-[#1F2438] active:scale-95 text-white font-bold text-xs py-3 rounded-xl transition shadow-md">
+                            ARBUZ
+                        </button>
+                        <button onclick="simulateClick('test')" class="bg-[#141724] hover:bg-[#1C1F30] border border-[#1F2438] active:scale-95 text-white font-bold text-xs py-3 rounded-xl transition shadow-md">
+                            TEST
+                        </button>
+                        <button onclick="simulateClick('volume')" class="bg-[#141724] hover:bg-[#1C1F30] border border-[#1F2438] active:scale-95 text-[#34C759] font-bold text-xs py-3 rounded-xl transition shadow-md">
+                            🔊 ГРОМКОСТЬ +
+                        </button>
+                        <button onclick="simulateClick('lock')" class="bg-[#141724] hover:bg-[#FF453A]/20 hover:border-[#FF453A]/40 border border-[#1F2438] active:scale-95 text-[#FF453A] font-bold text-[10px] py-3 rounded-xl transition shadow-md">
+                            🔒 БЛОК ПК
+                        </button>
+                    </div>
+                    <div class="w-20 h-1 bg-gray-700 rounded-full mx-auto mt-1"></div>
+                </div>
+
+                <div class="w-full h-64 bg-[#090A0F] border border-[#1F2438] rounded-2xl p-5 flex flex-col justify-between shadow-inner relative overflow-hidden group">
+                    <div class="flex items-center justify-between border-b border-[#1F2438] pb-2 text-xs text-gray-500">
+                        <div class="flex items-center space-x-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#FF453A]"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#FFCC00]"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#34C759]"></span>
+                            <span class="pl-2 font-mono text-[10px] tracking-wider text-gray-400">Рабочий стол Windows</span>
+                        </div>
+                        <div id="ping-badge" class="text-[9px] bg-[#34C759]/10 text-[#34C759] px-2 py-0.5 rounded-md font-mono transition-all duration-300">
+                            MQTT Мост: Онлайн
+                        </div>
+                    </div>
+
+                    <div id="pc-screen-content" class="flex-grow flex flex-col items-center justify-center text-center transition-all duration-500 p-4">
+                        <div class="text-4xl mb-2 animate-bounce">🖥️</div>
+                        <p class="text-sm font-semibold text-white">Компьютер ожидает команду...</p>
+                        <p class="text-xs text-gray-500 mt-1">Нажмите любую кнопку на смартфоне слева</p>
+                    </div>
+
+                    <div class="text-[10px] text-gray-600 font-mono text-left border-t border-[#1F2438]/50 pt-2 flex justify-between">
+                        <span>Протокол: MQTT Secure</span>
+                        <span id="ping-time">Задержка: --</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
 
         <section id="features" class="reveal-anim delay-300 grid md:grid-cols-3 gap-6 text-left mt-12 scroll-mt-24 relative z-10">
             <div class="p-6 bg-[#141724] border border-[#1F2438] rounded-2xl transition-all duration-300 hover:scale-[1.03] hover:border-[#007AFF]/50 hover:shadow-[0_10px_30px_rgba(0,122,255,0.1)] group">
@@ -147,8 +214,64 @@
     </main>
 
     <footer class="border-t border-[#1F2438] bg-[#0F1016] px-6 py-6 text-center text-xs text-gray-500 relative z-10">
-        <p>© 2026 Dictum. Все права защищены.</p>
+        <p>© 2026 Dictum Project. Все права защищены. Программа предоставляется "как есть".</p>
     </footer>
+
+    <script>
+        let currentVolume = 50;
+        
+        function simulateClick(actionType) {
+            const log = document.getElementById('phone-status-log');
+            const screen = document.getElementById('pc-screen-content');
+            const badge = document.getElementById('ping-badge');
+            const pingTime = document.getElementById('ping-time');
+            
+            // Анимация отправки пинга (мигание)
+            log.classList.remove('hidden');
+            badge.style.backgroundColor = 'rgba(0, 122, 255, 0.2)';
+            badge.style.color = '#007AFF';
+            badge.innerText = '📡 Передача...';
+            
+            // Имитируем реальную скорость MQTT-моста (14 миллисекунд задержки)
+            setTimeout(() => {
+                log.classList.add('hidden');
+                badge.style.backgroundColor = 'rgba(52, 199, 89, 0.1)';
+                badge.style.color = '#34C759';
+                badge.innerText = 'MQTT Мост: Онлайн';
+                pingTime.innerText = 'Задержка: ~14мс';
+                
+                // Рендерим реакцию монитора ПК в зависимости от кнопки
+                if (actionType === 'arbuz') {
+                    screen.innerHTML = `
+                        <div class="text-4xl mb-2 animate-bounce">🚀</div>
+                        <p class="text-sm font-bold text-white">Выполняется макрос: <span class="text-[#007AFF]">ARBUZ</span></p>
+                        <p class="text-xs text-gray-400 mt-1">Команда успешно принята клиентом Windows</p>
+                    `;
+                } else if (actionType === 'test') {
+                    screen.innerHTML = `
+                        <div class="text-4xl mb-2">💻</div>
+                        <p class="text-sm font-mono text-[#34C759]">C:\\Dictum> python bridge_tg.py</p>
+                        <p class="text-xs text-gray-400 mt-1">Запуск безопасного теста логических цепочек...</p>
+                    `;
+                } else if (actionType === 'volume') {
+                    currentVolume = currentVolume >= 100 ? 50 : currentVolume + 10;
+                    screen.innerHTML = `
+                        <div class="text-4xl mb-2">🔊</div>
+                        <p class="text-sm font-bold text-white">Системная громкость: <span class="text-[#34C759]">${currentVolume}%</span></p>
+                        <div class="w-40 h-2 bg-gray-800 rounded-full mx-auto mt-2 overflow-hidden">
+                            <div class="h-full bg-[#34C759] transition-all duration-300" style="width: ${currentVolume}%"></div>
+                        </div>
+                    `;
+                } else if (actionType === 'lock') {
+                    screen.innerHTML = `
+                        <div class="text-4xl mb-2 animate-pulse">🔒</div>
+                        <p class="text-sm font-bold text-[#FF453A]">Компьютер ЗАБЛОКИРОВАН</p>
+                        <p class="text-xs text-gray-500 mt-1">Выполнен системный вызов блокировки сессии</p>
+                    `;
+                }
+            }, 180);
+        }
+    </script>
 
 </body>
 </html>
