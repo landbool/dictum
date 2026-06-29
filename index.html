@@ -52,9 +52,9 @@
             
             <div class="hidden md:flex items-center space-x-2 px-3 py-1 bg-[#11131e] border border-[#1f2438]/50 rounded-full text-[11px] font-mono">
                 <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
-                <span class="text-gray-400">Node: Wispbyte Cloud</span>
+                <span class="text-gray-400">Облачный мост: Подключен</span>
                 <span class="text-gray-600">|</span>
-                <span class="text-[#007AFF]">Ping: 12ms</span>
+                <span class="text-[#007AFF]">Задержка: 12мс</span>
             </div>
 
             <nav class="flex items-center space-x-6">
@@ -103,7 +103,7 @@
                 <p class="text-gray-600">[09:14:53] Инициализация защищенных сокетов шифрования...</p>
                 <p class="text-[#007AFF]">[09:14:53] Успешное сопряжение с брокером через MQTT Secure порт 8883</p>
                 <p class="text-[#34C759] font-bold">[09:14:54] Base: Локальный бот Dictum готов к работе.</p>
-                <p class="text-purple-400">[09:14:55] [Server Sync] Обновлен список команд для пользователя: 791554****</p>
+                <p class="text-purple-400">[09:14:55] [Server Sync] Обновлен список команд для пользователя: 790565****</p>
                 <p class="text-gray-500 animate-pulse">▋ Ожидание удаленных событий...</p>
             </div>
         </section>
@@ -167,7 +167,7 @@
                     <div class="flex items-center justify-center space-x-2 bg-[#030406] p-4 rounded-xl border border-[#141724] text-[10px] font-mono">
                         <span class="text-gray-400 px-2 py-1 bg-[#141724] rounded-md border border-gray-800">TG Bot</span>
                         <span class="text-[#AF52DE] animate-pulse">➔</span>
-                        <span class="text-[#AF52DE] px-2 py-1 bg-[#AF52DE]/10 border border-[#AF52DE]/20 rounded-md">Wispbyte</span>
+                        <span class="text-[#AF52DE] px-2 py-1 bg-[#AF52DE]/10 border border-[#AF52DE]/20 rounded-md">Cloud Server</span>
                         <span class="text-[#007AFF] animate-pulse">➔</span>
                         <span class="text-white px-2 py-1 bg-[#007AFF]/20 border border-[#007AFF]/30 rounded-md">Твой ПК</span>
                     </div>
@@ -229,7 +229,7 @@
                     </button>
                     <div class="max-h-0 opacity-0 transition-all duration-300 ease-in-out bg-[#050608]/50">
                         <p class="p-5 text-xs text-gray-400 leading-relaxed border-t border-[#141724]/50">
-                            Да! В этом и прелесть новой клиент-серверной архитектуры. Компьютер дома подключен к интернету, бот висит в облаке Wispbyte — вы можете отправлять макросы со смартфона, находясь в любой точке земного шара.
+                            Да! В этом и прелесть новой клиент-серверной архитектуры. Компьютер дома подключен к интернету, бот висит в облаке — вы можете отправлять макросы со смартфона, находясь в любой точке земного шара.
                         </p>
                     </div>
                 </div>
@@ -239,31 +239,29 @@
     </main>
 
     <footer class="border-t border-[#141724] bg-[#050609] px-6 py-6 text-center text-xs text-gray-500 relative z-10">
-        <p>© 2026 Dictum Project. Все права защищены. Разработано для экосистемы Windows & Telegram.</p>
+        <p>© 2026 Dictum. Все права защищены.</p>
     </footer>
 
     <script>
-        // Функция раскрытия FAQ
         function toggleFaq(button) {
             const container = button.nextElementSibling;
             const arrow = button.querySelector('span:last-child');
             const parent = button.parentElement;
             
-            if (container.style.maxHeight && container.style.maxHeight !== '0px') {
-                container.style.maxHeight = '0px';
-                container.style.opacity = '0';
-                arrow.style.transform = 'rotate(0deg)';
-                parent.style.borderColor = '#141724';
-            } else {
-                // Закрываем остальные открытые
-                document.querySelectorAll('#faq > div').forEach(el => {
-                    el.style.borderColor = '#141724';
-                    const content = el.querySelector('div');
-                    if(content) { content.style.maxHeight = '0px'; content.style.opacity = '0'; }
-                    const arr = el.querySelector('button span:last-child');
-                    if(arr) arr.style.transform = 'rotate(0deg)';
-                });
-                
+            const isCurrentlyOpen = container.style.maxHeight && container.style.maxHeight !== '0px';
+            
+            document.querySelectorAll('#faq .space-y-3 > div').forEach(el => {
+                el.style.borderColor = '#141724';
+                const content = el.querySelector('div');
+                if (content) { 
+                    content.style.maxHeight = '0px'; 
+                    content.style.opacity = '0'; 
+                }
+                const arr = el.querySelector('button span:last-child');
+                if (arr) arr.style.transform = 'rotate(0deg)';
+            });
+            
+            if (!isCurrentlyOpen) {
                 container.style.maxHeight = container.scrollHeight + 'px';
                 container.style.opacity = '1';
                 arrow.style.transform = 'rotate(180deg)';
@@ -271,14 +269,26 @@
             }
         }
 
-        // Имитация живых логов в терминале
+        // 🔥 УЛЬТРА-ЖИВОЙ МАССИВ СИМУЛЯЦИИ РЕАЛЬНЫХ ЛОГОВ ПРОГРАММЫ С АВТО-ВРЕМЕНЕМ
         const terminal = document.getElementById('terminal-logs');
         const simulatedLogs = [
-            '<p class="text-gray-500">[09:15:11] Received ping request from client node</p>',
-            '<p class="text-purple-400">[09:15:24] [MQTT Inbound] Выполнен удаленный макрос: Mute Audio</p>',
-            '<p class="text-gray-500">[09:15:42] Телеметрия обновлена: Загрузка ЦП: 14%, ОЗУ: 42%</p>',
-            '<p class="text-[#007AFF]">[09:16:01] Очередь событий пуста, мост находится в режиме ожидания...</p>',
-            '<p class="text-purple-400">[09:16:15] [MQTT Inbound] Успешная эмуляция шортката: Win + D</p>'
+            '<p class="text-gray-500">[00:00:00] Received keep-alive ping request from client node</p>',
+            '<p class="text-[#AF52DE]">[00:00:00] [MQTT Inbound] Выполнен удаленный макрос: Mute Audio</p>',
+            '<p class="text-gray-500">[00:00:00] Телеметрия обновлена: Загрузка ЦП: 14%, ОЗУ: 42%</p>',
+            '<p class="text-[#007AFF]">[00:00:00] Очередь событий пуста, мост находится в режиме ожидания...</p>',
+            '<p class="text-[#AF52DE]">[00:00:00] [MQTT Inbound] Успешная эмуляция шортката: Win + D</p>',
+            '<p class="text-[#34C759]">[00:00:00] [Server Sync] Список макросов успешно обновлен в облачной базе данных</p>',
+            '<p class="text-yellow-500/90">[00:00:00] [Voice API] Получена команда от Алисы: "Включи режим кино"</p>',
+            '<p class="text-[#007AFF]">[00:00:00] [MQTT Secure] Тоннель стабилен. Потери пакетов: 0% (RTT: 12ms)</p>',
+            '<p class="text-[#AF52DE]">[00:00:00] [MQTT Inbound] Запуск кастомного макроса: ARBUZ</p>',
+            '<p class="text-gray-500">[00:00:00] [Input Sim] Низкоуровневый клик мыши в координатах (X: 1920, Y: 1080)</p>',
+            '<p class="text-gray-500">[00:00:00] [Telemetry] Основное окно скрыто. Программа работает в системном трее Windows</p>',
+            '<p class="text-[#34C759]">[00:00:00] [Auth Secure] Сессия пользователя +790565***** успешно верифицирована</p>',
+            '<p class="text-[#FF453A]/90">[00:00:00] [Server Notice] Перехвачен дубликат сессии. Ошибка 409 Conflict успешно предотвращена</p>',
+            '<p class="text-[#AF52DE]">[00:00:00] [MQTT Inbound] Изменение системной громкости: +10% (Текущая: 60%)</p>',
+            '<p class="text-gray-500">[00:00:00] [System] Обнаружен запуск полноэкранного приложения. Dictum переведен в игровой режим</p>',
+            '<p class="text-[#34C759]">[00:00:00] [Voice API] Синтез речи: Текст успешно озвучен премиум-голосом Светланы</p>',
+            '<p class="text-gray-500">[00:00:00] [Telemetry] Температура видеокарты: 52°C, критических нагрузок не обнаружено</p>'
         ];
         
         setInterval(() => {
@@ -287,17 +297,15 @@
                 const timestamp = new Date().toLocaleTimeString('ru-RU');
                 const cleanLog = randomLog.replace(/\[\d{2}:\d{2}:\d{2}\]/, `[${timestamp}]`);
                 
-                // Удаляем индикатор ожидания
                 const pulsed = terminal.querySelector('.animate-pulse');
                 if(pulsed) pulsed.remove();
                 
                 terminal.innerHTML += cleanLog + '<p class="text-gray-500 animate-pulse">▋ Ожидание удаленных событий...</p>';
                 terminal.scrollTop = terminal.scrollHeight;
                 
-                // Удерживаем не более 12 логов на экране для оптимизации памяти
                 if(terminal.children.length > 12) terminal.children[0].remove();
             }
-        }, 5000);
+        }, 4000);
     </script>
 
 </body>
