@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictum — Ультимативная экосистема управления ПК</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #030406; color: #E5E7EB; font-family: 'Segoe UI', system-ui, sans-serif; overflow-x: hidden; }
+        
+        /* 🔥 КИБЕРПАНК АНИМАЦИИ 2026 */
+        @keyframes borderGlow {
+            0%, 100% { border-color: rgba(0, 122, 255, 0.15); box-shadow: 0 0 30px rgba(0, 122, 255, 0.02); }
+            50% { border-color: rgba(175, 82, 222, 0.5); box-shadow: 0 0 40px rgba(175, 82, 222, 0.12); }
+        }
+        .glow-card { animation: borderGlow 6s ease-in-out infinite; }
+
+        @keyframes ambientGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.25; }
+            50% { transform: translate(-46%, -54%) scale(1.15); opacity: 0.45; }
+        }
+        .ambient-blob {
+            position: absolute; width: 900px; height: 550px;
+            background: radial-gradient(circle, rgba(0,122,255,0.35) 0%, rgba(175,82,222,0.12) 50%, transparent 70%);
+            filter: blur(110px); pointer-events: none; z-index: 0;
+            animation: ambientGlow 12s ease-in-out infinite;
+        }
+
+        /* Анимация аудио-волн Алисы */
+        @keyframes waveGlow {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
+        }
+        .wave-bar { animation: waveGlow 1.2s ease-in-out infinite; transform-origin: center; }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #030406; }
+        ::-webkit-scrollbar-thumb { background: #141724; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #007AFF; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-[#007AFF]/30">
+
+    <header class="border-b border-[#11131e] bg-[#050609]/80 backdrop-blur-xl px-6 py-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3 group cursor-pointer">
+                <img src="logo.png" alt="Dictum Logo" class="w-8 h-8 object-contain transition-transform duration-700 group-hover:rotate-[360deg]">
+                <span class="text-xl font-bold tracking-wider text-white bg-clip-text transition-all">DICTUM</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-2 px-3 py-1 bg-[#11131e] border border-[#1f2438]/50 rounded-full text-[11px] font-mono">
+                <span class="w-2 h-2 rounded-full bg-[#34C759] animate-pulse"></span>
+                <span class="text-gray-400">Облачный мост: Подключен</span>
+                <span class="text-gray-600">|</span>
+                <span class="text-[#007AFF]">Задержка: 12мс</span>
+            </div>
+
+            <nav class="flex items-center space-x-6">
+                <a href="#features" class="text-sm font-medium text-gray-400 hover:text-white transition">Стек</a>
+                <a href="#steps" class="text-sm font-medium text-gray-400 hover:text-white transition">Инструкция</a>
+                <a href="#faq" class="text-sm font-medium text-gray-400 hover:text-white transition">FAQ</a>
+                <a href="https://t.me/MyDictumBot" target="_blank" class="px-4 py-1.5 bg-[#007AFF]/10 border border-[#007AFF]/30 text-xs font-bold text-[#007AFF] rounded-full hover:bg-[#007AFF] hover:text-white transition duration-300">Открыть бот →</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto px-6 py-20 text-center relative w-full">
+        
+        <div class="ambient-blob top-[15%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+        
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight relative z-10 transition-all duration-500">
+            Управление компьютером<br>
+            с помощью<br>
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#007AFF] via-[#AF52DE] to-[#007AFF] bg-[length:200%_auto] hover:animate-[shimmer_4s_linear_infinite]">Telegram и Алисы</span>
+        </h1>
+        
+        <p class="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed relative z-10">
+            Dictum связывает десктопное приложение на ПК и защищенного облачного бота через мгновенный MQTT-мост. Запускай макросы, симулируй действия мыши и клавиатуры, настраивай звук и автоматизируй рутину.
+        </p>
+
+        <div class="mb-20 relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#" id="download-btn" class="w-full sm:w-auto bg-[#007AFF] hover:bg-[#0062CC] text-white font-bold text-sm px-8 py-3.5 rounded-xl shadow-[0_0_40px_rgba(0,122,255,0.2)] hover:shadow-[0_0_50px_rgba(0,122,255,0.5)] transition-all duration-300 transform hover:-translate-y-0.5">
+                Скачать Dictum для Windows
+            </a>
+            <a href="https://t.me/MyDictumBot" target="_blank" class="w-full sm:w-auto bg-[#11131e] border border-[#1f2438] hover:border-gray-600 text-gray-300 font-medium text-sm px-8 py-3.5 rounded-xl transition duration-300">
+                Протестировать Бота
+            </a>
+        </div>
+
+        <section class="max-w-3xl mx-auto mb-32 bg-[#090A0F] border border-[#141724] rounded-2xl p-4 shadow-2xl font-mono text-left relative z-10">
+            <div class="flex items-center justify-between border-b border-[#141724] pb-3 mb-3 text-xs text-gray-500">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-[#FF453A]"></span>
+                    <span class="w-3 h-3 rounded-full bg-[#FFCC00]"></span>
+                    <span class="w-3 h-3 rounded-full bg-[#34C759]"></span>
+                    <span class="text-gray-400 pl-2">bridge_tg.py — Live Server Thread</span>
+                </div>
+                <span class="text-[10px] uppercase text-[#AF52DE] tracking-widest bg-[#AF52DE]/10 px-2 py-0.5 rounded">Active Listener</span>
+            </div>
+            <div class="space-y-1.5 text-xs text-gray-400 h-40 overflow-y-auto" id="terminal-logs">
+                <p class="text-gray-600">[09:14:53] Инициализация защищенных сокетов шифрования...</p>
+                <p class="text-[#007AFF]">[09:14:53] Успешное сопряжение с брокером через MQTT Secure порт 8883</p>
+                <p class="text-[#34C759] font-bold">[09:14:54] Base: Локальный бот Dictum готов к работе.</p>
+                <p class="text-purple-400">[09:14:55] [Server Sync] Обновлен список команд для пользователя: 790565****</p>
+                <p class="text-gray-500 animate-pulse">▋ Ожидание удаленных событий...</p>
+            </div>
+        </section>
+
+        <section id="features" class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left scroll-mt-24 relative z-10">
+            
+            <div class="glow-card md:col-span-2 p-8 bg-[#090A0F] border border-[#141724] rounded-3xl flex flex-col justify-between transition-all duration-300 hover:bg-[#0C0E14] relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-5 text-8xl font-mono select-none group-hover:scale-110 transition duration-500 text-purple-500">JSON</div>
+                <div>
+                    <div class="flex items-center space-x-2 text-[#AF52DE] text-xs font-bold uppercase tracking-wider mb-3">
+                        <span>⚡</span> <span>Умная автоматизация</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Кастомные цепочки макросов</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed max-w-xl">
+                        Создавайте сложные сценарии любой длины. Программа последовательно выполнит цепочки нажатий клавиш, системные команды, паузы и проверки условий. Полная синхронизация с облачной базой данных «на лету».
+                    </p>
+                </div>
+                <div class="mt-6 p-4 bg-[#030406] rounded-xl font-mono text-[11px] text-gray-500 border border-[#141724] relative z-10">
+                    <span class="text-[#007AFF]">mqtt_client</span>.on_message = on_message_callback <br>
+                    <span class="text-[#34C759]">print</span>(<span class="text-gray-400">"Base: Локальный бот Dictum готов к работе."</span>)
+                </div>
+            </div>
+
+            <div class="p-8 bg-[#090A0F] border border-[#141724] rounded-3xl flex flex-col justify-between transition-all duration-300 hover:border-[#34C759]/30 hover:bg-[#0C0E14] group relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <div class="text-3xl transition-transform duration-300 group-hover:scale-110">🗣️</div>
+                    <div class="flex items-end space-x-1 h-6 pt-2">
+                        <div class="w-1 bg-[#34C759] h-3 wave-bar" style="animation-delay: 0.1s"></div>
+                        <div class="w-1 bg-[#34C759] h-5 wave-bar" style="animation-delay: 0.4s"></div>
+                        <div class="w-1 bg-[#34C759] h-2 wave-bar" style="animation-delay: 0.2s"></div>
+                        <div class="w-1 bg-[#34C759] h-6 wave-bar" style="animation-delay: 0.6s"></div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#34C759] transition">Голосовой движок</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Полная интеграция с умным домом Яндекса через навык «Домовёнок Кузя». Поддерживается встроенная синтез-озвучка текста премиум-голосом Светланы.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-8 bg-[#090A0F] border border-[#141724] rounded-3xl flex flex-col justify-between transition-all duration-300 hover:border-[#007AFF]/30 hover:bg-[#0C0E14] group">
+                <div class="text-3xl mb-4 transition-transform duration-300 group-hover:scale-110">⌨️</div>
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#007AFF] transition">Контроль ввода</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Эмуляция низкоуровневых аппаратных нажатий клавиш, сложных шорткатов Windows и плавное удаленное перемещение курсора мыши.
+                    </p>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 p-8 bg-[#090A0F] border border-[#141724] rounded-3xl flex flex-col justify-between transition-all duration-300 hover:bg-[#0C0E14]">
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <div class="text-[#007AFF] text-xs font-bold uppercase tracking-wider mb-2">⚙️ Архитектура</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Мгновенный MQTT Мост</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Никаких задержек. Команды из Telegram долетают до вашего компьютера менее чем за 15 миллисекунд благодаря легковесному сетевому протоколу интернета вещей. Бот работает в облаке 24/7 и не расходует батарею смартфона.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2 bg-[#030406] p-4 rounded-xl border border-[#141724] text-[10px] font-mono">
+                        <span class="text-gray-400 px-2 py-1 bg-[#141724] rounded-md border border-gray-800">TG Bot</span>
+                        <span class="text-[#AF52DE] animate-pulse">➔</span>
+                        <span class="text-[#AF52DE] px-2 py-1 bg-[#AF52DE]/10 border border-[#AF52DE]/20 rounded-md">Cloud Server</span>
+                        <span class="text-[#007AFF] animate-pulse">➔</span>
+                        <span class="text-white px-2 py-1 bg-[#007AFF]/20 border border-[#007AFF]/30 rounded-md">Твой ПК</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="steps" class="mt-36 border-t border-[#141724] pt-16 relative z-10 scroll-mt-24">
+            <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-12">Быстрый старт за 3 шага</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left text-sm">
+                <div class="p-6 bg-[#090A0F] border border-[#141724] rounded-2xl relative group hover:border-gray-700 transition">
+                    <div class="text-xs font-bold text-[#007AFF] mb-3 tracking-widest">01 / СКАЧАТЬ</div>
+                    <p class="text-gray-400 leading-relaxed text-xs">Запусти приложение на ПК. Программа умеет автоматически сворачиваться в системный трей Windows и поддерживает автозапуск при старте ОС.</p>
+                </div>
+                <div class="p-6 bg-[#090A0F] border border-[#141724] rounded-2xl relative group hover:border-gray-700 transition">
+                    <div class="text-xs font-bold text-[#AF52DE] mb-3 tracking-widest">02 / СИНХРОНИЗАЦИЯ</div>
+                    <p class="text-gray-400 leading-relaxed text-xs">Открой нашего Telegram-бота, отправь команду <span class="font-mono text-xs text-[#AF52DE]">/start</span> и по кнопке поделись контактом для занесения в постоянную базу.</p>
+                </div>
+                <div class="p-6 bg-[#090A0F] border border-[#141724] rounded-2xl relative group hover:border-gray-700 transition">
+                    <div class="text-xs font-bold text-[#34C759] mb-3 tracking-widest">03 / АВТОРИЗАЦИЯ</div>
+                    <p class="text-gray-400 leading-relaxed text-xs">Введи номер в настройках приложения на ПК, нажми "Запросить код" и укажи полученные в чате бота цифры подтверждения.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="mt-36 border-t border-[#141724] pt-16 text-left scroll-mt-24 relative z-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-12">Часто задаваемые вопросы</h2>
+            <div class="space-y-3 max-w-2xl mx-auto text-sm">
+                
+                <div class="bg-[#090A0F] border border-[#141724] rounded-xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 flex justify-between items-center text-left font-semibold text-white hover:bg-[#0C0E14] transition">
+                        <span>🔒 Это действительно безопасно для моего компьютера?</span>
+                        <span class="text-gray-500 transform transition-transform duration-300 pl-4">▼</span>
+                    </button>
+                    <div class="max-h-0 opacity-0 transition-all duration-300 ease-in-out bg-[#050608]/50">
+                        <p class="p-5 text-xs text-gray-400 leading-relaxed border-t border-[#141724]/50">
+                            Абсолютно. Dictum — это проект с открытым исходным кодом. Программа не собирает ваши пароли или личные файлы. Облачный мост передаёт исключительно зашифрованные имена нажатий клавиш и ID макросов, которые вы настроили самостоятельно.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-[#090A0F] border border-[#141724] rounded-xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 flex justify-between items-center text-left font-semibold text-white hover:bg-[#0C0E14] transition">
+                        <span>💰 Программа бесплатная или есть подписки?</span>
+                        <span class="text-gray-500 transform transition-transform duration-300 pl-4">▼</span>
+                    </button>
+                    <div class="max-h-0 opacity-0 transition-all duration-300 ease-in-out bg-[#050608]/50">
+                        <p class="p-5 text-xs text-gray-400 leading-relaxed border-t border-[#141724]/50">
+                            Весь функционал приложения, интеграция с Алисой и Telegram-бот предоставляются полностью бесплатно. Проект разрабатывается как Open Source решение для энтузиастов автоматизации.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-[#090A0F] border border-[#141724] rounded-xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 flex justify-between items-center text-left font-semibold text-white hover:bg-[#0C0E14] transition">
+                        <span>🌐 Будет ли работать управление, если я уеду в другой город?</span>
+                        <span class="text-gray-500 transform transition-transform duration-300 pl-4">▼</span>
+                    </button>
+                    <div class="max-h-0 opacity-0 transition-all duration-300 ease-in-out bg-[#050608]/50">
+                        <p class="p-5 text-xs text-gray-400 leading-relaxed border-t border-[#141724]/50">
+                            Да! В этом и прелесть новой клиент-серверной архитектуры. Компьютер дома подключен к интернету, бот висит в облаке — вы можете отправлять макросы со смартфона, находясь в любой точке земного шара.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-[#141724] bg-[#050609] px-6 py-6 text-center text-xs text-gray-500 relative z-10">
+        <p>© 2026 Dictum. Все права защищены.</p>
+    </footer>
+
+    <div id="download-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#090A0F] border border-[#141724] rounded-2xl p-6 max-w-md w-full mx-4 relative shadow-2xl shadow-[#007AFF]/5">
+            
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <h3 class="text-xl font-bold text-white mb-1 text-center">Выберите вариант загрузки</h3>
+            <p class="text-gray-400 text-xs text-center mb-6">Выберите удобный способ установки экосистемы Dictum</p>
+            
+            <div class="space-y-3">
+                <a href="https://github.com/landbool/DictumApp/releases/download/v1.0.0/Dictum_Setup.exe" class="flex items-center p-4 bg-[#030406] hover:bg-[#0C0E14] border border-[#141724] hover:border-[#007AFF]/40 rounded-xl transition-all duration-200 group active:scale-[0.99]">
+                    <div class="p-3 bg-[#007AFF]/10 text-[#007AFF] rounded-lg group-hover:bg-[#007AFF]/20 transition-colors mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-white font-semibold text-sm group-hover:text-[#007AFF] transition-colors">Автономный установщик (.exe)</div>
+                        <div class="text-gray-500 text-xs mt-0.5">Готовая программа для Windows. Установка Python и библиотек не требуется.</div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/landbool/DictumApp" target="_blank" class="flex items-center p-4 bg-[#030406] hover:bg-[#0C0E14] border border-[#141724] hover:border-[#AF52DE]/40 rounded-xl transition-all duration-200 group active:scale-[0.99]">
+                    <div class="p-3 bg-[#AF52DE]/10 text-[#AF52DE] rounded-lg group-hover:bg-[#AF52DE]/20 transition-colors mr-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.061.069-.061 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-white font-semibold text-sm group-hover:text-[#AF52DE] transition-colors">Исходный код (GitHub)</div>
+                        <div class="text-gray-500 text-xs mt-0.5">Для разработчиков. Открытый клиентский код проекта.</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(button) {
+            const container = button.nextElementSibling;
+            const arrow = button.querySelector('span:last-child');
+            const parent = button.parentElement;
+            
+            const isCurrentlyOpen = container.style.maxHeight && container.style.maxHeight !== '0px';
+            
+            document.querySelectorAll('#faq .space-y-3 > div').forEach(el => {
+                el.style.borderColor = '#141724';
+                const content = el.querySelector('div');
+                if (content) { 
+                    content.style.maxHeight = '0px'; 
+                    content.style.opacity = '0'; 
+                }
+                const arr = el.querySelector('button span:last-child');
+                if (arr) arr.style.transform = 'rotate(0deg)';
+            });
+            
+            if (!isCurrentlyOpen) {
+                container.style.maxHeight = container.scrollHeight + 'px';
+                container.style.opacity = '1';
+                arrow.style.transform = 'rotate(180deg)';
+                parent.style.borderColor = '#007AFF';
+            }
+        }
+
+        // 🔥 УЛЬТРА-ЖИВОЙ МАССИВ СИМУЛЯЦИИ РЕАЛЬНЫХ ЛОГОВ ПРОГРАММЫ С АВТО-ВРЕМЕНЕМ
+        const terminal = document.getElementById('terminal-logs');
+        const simulatedLogs = [
+            '<p class="text-gray-500">[00:00:00] Received keep-alive ping request from client node</p>',
+            '<p class="text-[#AF52DE]">[00:00:00] [MQTT Inbound] Выполнен удаленный макрос: Mute Audio</p>',
+            '<p class="text-gray-500">[00:00:00] Телеметрия обновлена: Загрузка ЦП: 14%, ОЗУ: 42%</p>',
+            '<p class="text-[#007AFF]">[00:00:00] Очередь событий пуста, мост находится в режиме ожидания...</p>',
+            '<p class="text-[#AF52DE]">[00:00:00] [MQTT Inbound] Успешная эмуляция шортката: Win + D</p>',
+            '<p class="text-[#34C759]">[00:00:00] [Server Sync] Список макросов успешно обновлен в облачной базе данных</p>',
+            '<p class="text-yellow-500/90">[00:00:00] [Voice API] Получена команда от Алисы: "Включи режим кино"</p>',
+            '<p class="text-[#007AFF]">[00:00:00] [MQTT Secure] Тоннель стабилен. Потери пакетов: 0% (RTT: 12ms)</p>',
+            '<p class="text-[#AF52DE]">[00:00:00] [MQTT Inbound] Запуск кастомного макроса: ARBUZ</p>',
+            '<p class="text-gray-500">[00:00:00] [Input Sim] Низкоуровневый клик мыши в координатах (X: 1920, Y: 1080)</p>',
+            '<p class="text-gray-500">[00:00:00] [Telemetry] Основное окно скрыто. Программа работает в системном трее Windows</p>',
+            '<p class="text-[#34C759]">[00:00:00] [Auth Secure] Сессия пользователя +790565***** успешно верифицирована</p>',
+            '<p class="text-[#FF453A]/90">[00:00:00] [Server Notice] Перехвачен дубликат сессии. Ошибка 409 Conflict успешно предотвращена</p>',
+            '<p class="text-[#AF52DE]">[00:00:00] [MQTT Inbound] Изменение системной громкости: +10% (Текущая: 60%)</p>',
+            '<p class="text-gray-500">[00:00:00] [System] Обнаружен запуск полноэкранного приложения. Dictum переведен в игровой режим</p>',
+            '<p class="text-[#34C759]">[00:00:00] [Voice API] Синтез речи: Текст успешно озвучен премиум-голосом Светланы</p>',
+            '<p class="text-gray-500">[00:00:00] [Telemetry] Температура видеокарты: 52°C, критических нагрузок не обнаружено</p>'
+        ];
+        
+        setInterval(() => {
+            if(terminal) {
+                const randomLog = simulatedLogs[Math.floor(Math.random() * simulatedLogs.length)];
+                const timestamp = new Date().toLocaleTimeString('ru-RU');
+                const cleanLog = randomLog.replace(/\[\d{2}:\d{2}:\d{2}\]/, `[${timestamp}]`);
+                
+                const pulsed = terminal.querySelector('.animate-pulse');
+                if(pulsed) pulsed.remove();
+                
+                terminal.innerHTML += cleanLog + '<p class="text-gray-500 animate-pulse">▋ Ожидание удаленных событий...</p>';
+                terminal.scrollTop = terminal.scrollHeight;
+                
+                if(terminal.children.length > 12) terminal.children[0].remove();
+            }
+        }, 4000);
+
+        // =============================================
+        // ЛОГИКА УПРАВЛЕНИЯ МОДАЛЬНЫМ ОКНОМ СКАЧИВАНИЯ
+        // =============================================
+        const downloadBtn = document.getElementById('download-btn');
+        const modal = document.getElementById('download-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        // Открытие окна с плавным размытием и появлением
+        if (downloadBtn && modal) {
+            downloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.add('opacity-100');
+                }, 10);
+            });
+        }
+
+        // Функция закрытия окна
+        function hideModal() {
+            if (modal) {
+                modal.classList.remove('opacity-100');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300); // Ждем 300мс пока отработает transition затухания
+            }
+        }
+
+        if (closeModal) {
+            closeModal.addEventListener('click', hideModal);
+        }
+
+        // Закрытие при клике по темному фону вокруг окна
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
