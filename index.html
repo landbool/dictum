@@ -111,6 +111,15 @@
             stroke-dasharray: 8, 4;
             animation: dash 1.5s linear infinite;
         }
+
+        /* Premium Tab Fade Animation */
+        @keyframes tabFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-tab-fade {
+            animation: tabFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative selection:bg-[#007AFF]/30 bg-grid">
@@ -162,7 +171,7 @@
         </div>
     </header>
 
-    <main class="flex-grow max-w-6xl mx-auto px-6 pt-12 md:pt-24 pb-20 text-center relative w-full">
+    <main class="flex-grow max-w-6xl mx-auto px-6 pt-12 md:pt-24 pb-20 text-center relative w-full font-sans">
         
         <div class="inline-flex items-center space-x-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-400 mb-6 relative z-10 animate-fade-in">
             <span class="bg-[#007AFF]/15 text-[#007AFF] px-2 py-0.5 rounded-full font-bold text-[10px] uppercase">v1.0.0</span>
@@ -175,7 +184,7 @@
             <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#007AFF] via-[#AF52DE] to-[#007AFF] bg-[length:200%_auto] hover:animate-[shimmer_4s_linear_infinite] filter drop-shadow-[0_0_30px_rgba(175,82,222,0.15)]">через Telegram и Алису</span>
         </h1>
         
-        <p class="text-sm sm:text-base md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10 font-normal">
+        <p class="text-sm sm:text-base md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10 font-normal px-2 sm:px-0">
             Dictum связывает защищенное приложение на ПК и облачного бота через сверхбыстрый MQTT-туннель. Эмулируй клавиатуру, запускай цепочки макросов, настраивай звук и выключай систему удаленно.
         </p>
 
@@ -196,14 +205,14 @@
                 </button>
                 <button id="tab-pc-btn" onclick="switchDemoTab('pc')" class="flex-1 py-2.5 text-xs font-bold rounded-lg text-gray-400 transition-all duration-300 flex items-center justify-center gap-1.5 relative">
                     💻 Экран ПК
-                    <span id="pc-badge" class="absolute -top-1 -right-1 bg-[#FF453A] text-white font-mono text-[9px] w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
+                    <span id="pc-badge" class="absolute -top-1 -right-1 bg-[#FF453A] text-white font-mono text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
                 </button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
                 
                 <div id="demo-phone-container" class="lg:col-span-5 flex justify-center transition-all duration-300">
-                    <div class="w-[285px] sm:w-[300px] h-[540px] rounded-[40px] border-4 border-white/10 glass-card p-4 relative shadow-2xl flex flex-col justify-between overflow-hidden">
+                    <div class="w-full max-w-[285px] sm:max-w-[300px] h-[540px] rounded-[40px] border-4 border-white/10 glass-card p-4 relative shadow-2xl flex flex-col justify-between overflow-hidden">
                         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-[#020204] rounded-b-2xl border-x border-b border-white/10 flex items-center justify-center z-10">
                             <span class="w-12 h-1 bg-white/20 rounded-full"></span>
                         </div>
@@ -228,7 +237,7 @@
 
                                 <p class="text-[10px] text-gray-500 mt-4 px-1">Выберите удаленную команду для отправки:</p>
                                 
-                                <div class="space-y-2.5 mt-3">
+                                <div class="space-y-2.5 mt-3 font-sans">
                                     <button onclick="triggerDemo('shortcut', 'Win + D')" class="phone-btn w-full text-left p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-[#007AFF]/10 hover:border-[#007AFF]/40 transition-all duration-200 flex justify-between items-center group active:scale-[0.98]">
                                         <div>
                                             <div class="text-xs font-bold text-white">Показать Рабочий стол</div>
@@ -280,7 +289,7 @@
                 </div>
 
                 <div id="demo-pc-container" class="lg:col-span-5 hidden lg:flex justify-center transition-all duration-300">
-                    <div class="w-full max-w-md bg-[#05060A] border border-white/5 rounded-2xl p-4 shadow-2xl font-mono text-left relative overflow-hidden">
+                    <div class="w-full max-w-[340px] sm:max-w-md bg-[#05060A] border border-white/5 rounded-2xl p-4 shadow-2xl font-mono text-left relative overflow-hidden">
                         
                         <div class="flex items-center justify-between border-b border-white/5 pb-3 mb-3 text-xs text-gray-500">
                             <div class="flex items-center space-x-2">
@@ -318,7 +327,7 @@
 
             <div id="features" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-6 text-left pb-6 md:grid md:grid-cols-3 md:overflow-visible">
                 
-                <div class="glass-card shrink-0 snap-center w-[85vw] md:w-auto md:col-span-2 p-6 md:p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 hover:border-[#007AFF]/30 hover:bg-[#0C0E14]/80 relative overflow-hidden group">
+                <div class="glass-card shrink-0 snap-center w-[85vw] sm:w-[75vw] md:w-auto md:col-span-2 p-6 md:p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 hover:border-[#007AFF]/30 hover:bg-[#0C0E14]/80 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 p-6 opacity-[0.02] text-9xl font-mono select-none group-hover:scale-110 group-hover:opacity-[0.05] transition duration-500 text-purple-500">JSON</div>
                     <div>
                         <div class="flex items-center space-x-2 text-[#AF52DE] text-xs font-bold uppercase tracking-wider mb-3">
@@ -335,7 +344,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card shrink-0 snap-center w-[85vw] md:w-auto p-6 md:p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 hover:border-[#34C759]/30 hover:bg-[#0C0E14]/80 group relative overflow-hidden">
+                <div class="glass-card shrink-0 snap-center w-[85vw] sm:w-[75vw] md:w-auto p-6 md:p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 hover:border-[#34C759]/30 hover:bg-[#0C0E14]/80 group relative overflow-hidden">
                     <div class="flex justify-between items-start">
                         <div class="text-4xl transition-transform duration-300 group-hover:scale-110">🗣️</div>
                         <div class="flex items-end space-x-1 h-6 pt-2">
@@ -353,7 +362,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card shrink-0 snap-center w-[85vw] md:w-auto p-6 md:p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 hover:border-[#007AFF]/30 hover:bg-[#0C0E14]/80 group">
+                <div class="glass-card shrink-0 snap-center w-[85vw] sm:w-[75vw] md:w-auto p-6 md:p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 hover:border-[#007AFF]/30 hover:bg-[#0C0E14]/80 group">
                     <div class="text-4xl mb-6 transition-transform duration-300 group-hover:scale-110">⌨️</div>
                     <div>
                         <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#007AFF] transition">Контроль ввода</h3>
@@ -363,7 +372,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card shrink-0 snap-center w-[85vw] md:w-auto md:col-span-2 p-6 md:p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 hover:bg-[#0C0E14]/80">
+                <div class="glass-card shrink-0 snap-center w-[85vw] sm:w-[75vw] md:w-auto md:col-span-2 p-6 md:p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 hover:bg-[#0C0E14]/80">
                     <div class="grid md:grid-cols-12 gap-6 items-center h-full">
                         <div class="md:col-span-7">
                             <div class="text-[#007AFF] text-xs font-bold uppercase tracking-wider mb-2">⚙️ Архитектура</div>
@@ -385,16 +394,16 @@
             </div>
             
             <div class="flex justify-center gap-1.5 mt-2 md:hidden">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
-                <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                <span class="w-4 h-1.5 rounded-full bg-[#007AFF] transition-all duration-300"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
             </div>
         </section>
 
-        <section id="steps" class="mt-28 md:mt-36 border-t border-white/5 pt-16 relative z-10 scroll-mt-24">
+        <section id="steps" class="mt-24 md:mt-36 border-t border-white/5 pt-16 relative z-10 scroll-mt-24">
             
-            <div class="flex justify-between items-end mb-10 md:mb-16">
+            <div class="flex justify-between items-end mb-8 md:mb-16">
                 <div class="text-left mx-auto md:mx-0">
                     <h2 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Быстрый старт за 3 шага</h2>
                 </div>
@@ -405,19 +414,19 @@
 
             <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-6 text-left text-sm pb-6 md:grid md:grid-cols-3 md:overflow-visible">
                 
-                <div class="glass-card shrink-0 snap-center w-[85vw] md:w-auto p-6 md:p-8 rounded-2xl relative group hover:border-white/10 transition duration-300">
+                <div class="glass-card shrink-0 snap-center w-[85vw] sm:w-[75vw] md:w-auto p-6 md:p-8 rounded-2xl relative group hover:border-white/10 transition duration-300">
                     <div class="text-xs font-bold text-[#007AFF] mb-4 tracking-widest">01 / СКАЧАТЬ</div>
                     <h3 class="text-base font-bold text-white mb-2">Запустите приложение</h3>
                     <p class="text-gray-400 leading-relaxed text-xs">Запустите утилиту Dictum на ПК. Программа умеет сворачиваться в системный трей Windows и поддерживает опцию фонового автозапуска при старте ОС.</p>
                 </div>
 
-                <div class="glass-card shrink-0 snap-center w-[85vw] md:w-auto p-6 md:p-8 rounded-2xl relative group hover:border-white/10 transition duration-300">
+                <div class="glass-card shrink-0 snap-center w-[85vw] sm:w-[75vw] md:w-auto p-6 md:p-8 rounded-2xl relative group hover:border-white/10 transition duration-300">
                     <div class="text-xs font-bold text-[#AF52DE] mb-4 tracking-widest">02 / СИНХРОНИЗАЦИЯ</div>
                     <h3 class="text-base font-bold text-white mb-2">Активируйте бота</h3>
                     <p class="text-gray-400 leading-relaxed text-xs">Откройте официального Telegram-бота, отправьте команду <span class="font-mono text-xs text-[#AF52DE] font-semibold">/start</span> и поделитесь контактом для привязки защищенного ID.</p>
                 </div>
 
-                <div class="glass-card shrink-0 snap-center w-[85vw] md:w-auto p-6 md:p-8 rounded-2xl relative group hover:border-white/10 transition duration-300">
+                <div class="glass-card shrink-0 snap-center w-[85vw] sm:w-[75vw] md:w-auto p-6 md:p-8 rounded-2xl relative group hover:border-white/10 transition duration-300">
                     <div class="text-xs font-bold text-[#34C759] mb-4 tracking-widest">03 / АВТОРИЗАЦИЯ</div>
                     <h3 class="text-base font-bold text-white mb-2">Введите код</h3>
                     <p class="text-gray-400 leading-relaxed text-xs">Введите ваш номер в настройках приложения на ПК, нажмите «Запросить код» и введите полученные в мессенджере проверочные цифры.</p>
@@ -426,13 +435,13 @@
             </div>
 
             <div class="flex justify-center gap-1.5 mt-2 md:hidden">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
-                <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                <span class="w-4 h-1.5 rounded-full bg-[#007AFF] transition-all duration-300"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
             </div>
         </section>
 
-        <section id="faq" class="mt-28 md:mt-36 border-t border-white/5 pt-16 text-left scroll-mt-24 relative z-10">
+        <section id="faq" class="mt-24 md:mt-36 border-t border-white/5 pt-16 text-left scroll-mt-24 relative z-10">
             <h2 class="text-2xl md:text-3xl font-extrabold text-white text-center mb-12 tracking-tight">Часто задаваемые вопросы</h2>
             <div class="space-y-4 max-w-3xl mx-auto text-sm">
                 
@@ -495,10 +504,10 @@
                 </svg>
             </button>
 
-            <h3 class="text-2xl font-black text-white mb-2 text-center">Скачать Dictum</h3>
+            <h3 class="text-2xl font-black text-white mb-2 text-center font-sans">Скачать Dictum</h3>
             <p class="text-gray-400 text-xs text-center mb-6">Выберите наиболее подходящий вариант развертывания экосистемы</p>
             
-            <div class="space-y-4">
+            <div class="space-y-4 font-sans">
                 <a id="github-exe-link" href="https://github.com/landbool/DictumApp/releases/download/v1.0.0/Dictum_Setup.exe" class="flex items-center p-4 bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-[#007AFF]/40 rounded-2xl transition-all duration-300 group">
                     <div class="p-3.5 bg-[#007AFF]/10 text-[#007AFF] rounded-xl group-hover:bg-[#007AFF]/20 transition-colors mr-4">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -575,9 +584,9 @@
 
             if (targetTab === 'phone') {
                 phoneContainer.classList.remove('hidden');
-                phoneContainer.classList.add('flex');
+                phoneContainer.classList.add('flex', 'animate-tab-fade');
                 pcContainer.classList.add('hidden');
-                pcContainer.classList.remove('flex');
+                pcContainer.classList.remove('flex', 'animate-tab-fade');
 
                 tabPhoneBtn.classList.add('bg-[#007AFF]', 'text-white');
                 tabPhoneBtn.classList.remove('text-gray-400');
@@ -585,9 +594,9 @@
                 tabPcBtn.classList.add('text-gray-400');
             } else {
                 phoneContainer.classList.add('hidden');
-                phoneContainer.classList.remove('flex');
+                phoneContainer.classList.remove('flex', 'animate-tab-fade');
                 pcContainer.classList.remove('hidden');
-                pcContainer.classList.add('flex');
+                pcContainer.classList.add('flex', 'animate-tab-fade');
 
                 tabPcBtn.classList.add('bg-[#007AFF]', 'text-white');
                 tabPcBtn.classList.remove('text-gray-400');
@@ -596,9 +605,11 @@
 
                 // Reset badge count on tab open
                 pendingEventsCount = 0;
-                badge.textContent = '0';
-                badge.classList.remove('scale-100');
-                badge.classList.add('scale-0');
+                if (badge) {
+                    badge.textContent = '0';
+                    badge.classList.remove('scale-100');
+                    badge.classList.add('scale-0');
+                }
             }
         }
 
@@ -738,11 +749,11 @@
                 const scrollIndex = Math.round(swiper.scrollLeft / swiper.clientWidth);
                 dots.forEach((dot, idx) => {
                     if (idx === scrollIndex) {
-                        dot.classList.remove('bg-white/20');
-                        dot.classList.add('bg-[#007AFF]');
+                        dot.classList.remove('bg-white/20', 'w-1.5');
+                        dot.classList.add('bg-[#007AFF]', 'w-4'); // Expand dot
                     } else {
-                        dot.classList.remove('bg-[#007AFF]');
-                        dot.classList.add('bg-white/20');
+                        dot.classList.remove('bg-[#007AFF]', 'w-4');
+                        dot.classList.add('bg-white/20', 'w-1.5');
                     }
                 });
             });
@@ -834,7 +845,7 @@
                     }
                 }
             } catch (e) {
-                console.log("GitHub API заблокирован локальной политикой CORS. Активирован дефолтный URL.");
+                console.log("GitHub API недоступен локальной политикой CORS. Активирован дефолтный URL.");
             }
         }
 
